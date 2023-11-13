@@ -1,6 +1,9 @@
-import matches from "./data/matches";
+const matches = require('./data/matches');
+const parseMatch = require('./utils/matchParser');
 
+const matchesParsed = matches.map(parseMatch);
 
+console.log(matchesParsed)
 
 // class EventParser {
 //   makeEventName(match) {
