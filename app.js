@@ -1,9 +1,16 @@
 const matches = require('./data/matches');
 const parseMatch = require('./utils/matchParser');
 
-const matchesParsed = matches.map(parseMatch);
+const matchesParsed = matches.reduce((acc, match) => {
+  try {
+    acc.push(parseMatch(match));
+  } catch (error) {
+    // console.error(error.message);
+  }
+  return acc;
+}, []);
 
-console.log(matchesParsed)
+console.log(matchesParsed);
 
 // class EventParser {
 //   makeEventName(match) {

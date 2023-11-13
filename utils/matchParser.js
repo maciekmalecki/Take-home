@@ -26,7 +26,7 @@ const getFormatter = (sport) => {
 const parseMatch = (match) => {
   const formatter = getFormatter(match.sport);
   if (!formatter) {
-    return { error: `No formatter available for sport: ${match.sport}` };
+    throw new Error(`No formatter available for sport: ${match.sport}`);
   }
   return formatter(match);
 };
