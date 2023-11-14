@@ -8,7 +8,7 @@ import {
   INVALID_SPORT,
 } from './types';
 import matches from './data/matches';
-import { Data, ParsedData } from './interfaces';
+import { ParsedData, Data } from './interfaces';
 
 class EventParser {
   makeEventName({ sport, participant1, participant2 }: Data): string {
@@ -29,7 +29,7 @@ class EventParser {
     if (!score) {
       return INVALID_SCORE;
     }
-    // basketball 
+    // basketball
     if (Array.isArray(score)) {
       const result = score.flat();
       return result.join(',');
@@ -51,7 +51,6 @@ class EventParser {
     return score;
   }
 }
-
 const matchesParsed: ParsedData[] = [];
 const parser = new EventParser();
 
@@ -67,3 +66,5 @@ matches.forEach((match) => {
 });
 
 console.log(matchesParsed);
+
+export default EventParser;

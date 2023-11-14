@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.INVALID_SCORE = exports.INVALID_SPORT = exports.SKI_JUMPING = exports.TENNIS = exports.BASKETBALL = exports.HANDBALL = exports.VOLLEYBALL = exports.SOCCER = void 0;
+exports.SOCCER = 'soccer';
+exports.VOLLEYBALL = 'volleyball';
+exports.HANDBALL = 'handball';
+exports.BASKETBALL = 'basketball';
+exports.TENNIS = 'tennis';
+exports.SKI_JUMPING = 'ski jumping';
+exports.INVALID_SPORT = 'Exception: invalid sport';
+exports.INVALID_SCORE = 'Exception: invalid score';

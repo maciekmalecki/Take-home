@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
+    "target": "es6",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-
-  }
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["node", "jest"],
+    "outDir": "dist/"
+  },
+  "include": ["src/", "**/*.ts"],
+  "exclude": ["node_modules"]
 }
