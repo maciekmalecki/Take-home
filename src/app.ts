@@ -1,133 +1,69 @@
+import {
+  SOCCER,
+  VOLLEYBALL,
+  HANDBALL,
+  BASKETBALL,
+  TENNIS,
+  INVALID_SCORE,
+  INVALID_SPORT,
+} from './types';
 import matches from './data/matches';
-import parseMatch from './utils/matchParser';
+import { Data, ParsedData } from './interfaces';
 
-const matchesParsed = matches.reduce((acc, match) => {
-  try {
-    acc.push(parseMatch(match));
-  } catch (error) {
-    // optional error message
-    // console.error(error.message);
+class EventParser {
+  makeEventName({ sport, participant1, participant2 }: Data): string {
+    switch (sport) {
+      case SOCCER:
+      case VOLLEYBALL:
+      case BASKETBALL:
+        return `${participant1} - ${participant2}`;
+      case TENNIS:
+      case HANDBALL:
+        return `${participant1} vs ${participant2}`;
+      default:
+        return INVALID_SPORT;
+    }
   }
-  return acc;
-}, []);
+
+  formatScore({ score }: Data): string {
+    if (!score) {
+      return INVALID_SCORE;
+    }
+    // basketball 
+    if (Array.isArray(score)) {
+      const result = score.flat();
+      return result.join(',');
+    }
+    // volleyball and tennis
+    if (score.includes(',')) {
+      const scoreArr = score.split(',');
+      const mainScore = scoreArr[0];
+      const matchResult = `Main score: ${mainScore}`;
+      const setResultArr: string[] = [];
+      const setArr = scoreArr.slice(1);
+      setArr.forEach((set, setIndex) => {
+        setResultArr.push(`set${setIndex + 1} ${set}`);
+      });
+      const setResult = setResultArr.join(', ');
+      return `${matchResult} (${setResult})`;
+    }
+    // soccer and handball
+    return score;
+  }
+}
+
+const matchesParsed: ParsedData[] = [];
+const parser = new EventParser();
+
+matches.forEach((match) => {
+  const name = parser.makeEventName(match);
+  const score = parser.formatScore(match);
+  if (name !== INVALID_SPORT && score !== INVALID_SCORE) {
+    matchesParsed.push({
+      name,
+      score,
+    });
+  }
+});
 
 console.log(matchesParsed);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class EventParser {
-//   makeEventName(match) {
-//     if (match.sport === 'soccer') {
-//       return match.participant1 + ' - ' + match.participant2;
-//     } else if (match.sport === 'tennis') {
-//       return match.participant1 + ' vs ' + match.participant2;
-//     } else if (match.sport === 'volleyball') {
-//       return match.participant1 + ' - ' + match.participant2;
-//     } else if (match.sport === 'handball') {
-//       return match.participant1 + ' vs ' + match.participant2;
-//     } else if (match.sport === 'basketball') {
-//       return match.participant1 + ' - ' + match.participant2;
-//     } else {
-//       return 'Exception: invalid sport';
-//     }
-//   }
-
-//   formatScore(match) {
-//     if (match.sport === 'soccer') {
-//       return match.score;
-//     } else if (match.sport === 'tennis') {
-//       var scores =
-//         /([0-9]+\:[0-9]+),([0-9]+\:[0-9]+),([0-9]+\:[0-9]+),([0-9]+\:[0-9]+)/.exec(
-//           match.score
-//         );
-//       var set1 = scores[2];
-//       var set2 = scores[3];
-//       var set3 = scores[4];
-
-//       return (
-//         'Main score: ' +
-//         scores[1] +
-//         ' (' +
-//         'set1 ' +
-//         set1 +
-//         ', ' +
-//         'set2 ' +
-//         set2 +
-//         ', ' +
-//         'set3 ' +
-//         set3 +
-//         ')'
-//       );
-//     } else if (match.sport === 'volleyball') {
-//       var scores =
-//         /([0-9]+\:[0-9]+),([0-9]+\:[0-9]+),([0-9]+\:[0-9]+),([0-9]+\:[0-9]+)/.exec(
-//           match.score
-//         );
-//       var set1 = scores[2];
-//       var set2 = scores[3];
-//       var set3 = scores[4];
-
-//       return (
-//         'Main score: ' +
-//         scores[1] +
-//         ' (' +
-//         'set1 ' +
-//         set1 +
-//         ', ' +
-//         'set2 ' +
-//         set2 +
-//         ', ' +
-//         'set3 ' +
-//         set3 +
-//         ')'
-//       );
-//     } else if (match.sport === 'basketball') {
-//       return (
-//         match.score[0][0] +
-//         ',' +
-//         match.score[0][1] +
-//         ',' +
-//         match.score[1][0] +
-//         ',' +
-//         match.score[1][1]
-//       );
-//     } else if (match.sport === 'handball') {
-//       return match.score;
-//     } else {
-//       return 'Exception: invalid sport';
-//     }
-//   }
-// }
-
-// let matchesParsed = [];
-
-// for (var i = 0; i < matches.length; i++) {
-//   let parser = new EventParser();
-//   let name = parser.makeEventName(matches[i]);
-//   let score = parser.formatScore(matches[i]);
-
-//   if (
-//     name !== 'Exception: invalid sport' &&
-//     score !== 'Exception: invalid sport'
-//   ) {
-//     matchesParsed.push({
-//       name,
-//       score,
-//     });
-//   }
-// }
-
-// console.log(matchesParsed);
