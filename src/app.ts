@@ -1,5 +1,5 @@
-const matches = require('./data/matches');
-const parseMatch = require('./utils/matchParser');
+import matches from './data/matches';
+import parseMatch from './utils/matchParser';
 
 const matchesParsed = matches.reduce((acc, match) => {
   try {
@@ -12,6 +12,21 @@ const matchesParsed = matches.reduce((acc, match) => {
 }, []);
 
 console.log(matchesParsed);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // class EventParser {
 //   makeEventName(match) {

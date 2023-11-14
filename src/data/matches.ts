@@ -1,4 +1,6 @@
-const matches = [
+import { Data } from '../interfaces';
+
+const matches: Data[] = [
   {
     sport: 'soccer',
     participant1: 'Chelsea',
@@ -37,4 +39,4 @@ const matches = [
   },
 ];
 
-module.exports = matches;
+export default matches;
