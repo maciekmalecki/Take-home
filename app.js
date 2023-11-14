@@ -5,6 +5,7 @@ const matchesParsed = matches.reduce((acc, match) => {
   try {
     acc.push(parseMatch(match));
   } catch (error) {
+    // optional error message
     // console.error(error.message);
   }
   return acc;
