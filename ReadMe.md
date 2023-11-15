@@ -10,14 +10,14 @@ Welcome to the Event Parser project! This TypeScript-based solution parses sport
 - npm
 
 ### Installation
-1. Clone the repository:
-   git clone [repository-url]
+Clone the repository:
+git clone
 
-2. Install dependencies:
-   npm i
+Install dependencies:
+npm i
 
-3. Compile TypeScript to JavaScript:
-   npx tsc
+Compile TypeScript to JavaScript:
+npx tsc
 
 ### Running the Application
 To run the application, execute:
@@ -52,7 +52,7 @@ jest --coverage
 
 - Maciej Malecki
 
-Instructions:
+## Instructions:
 - You have to refactor code in app.js file. Change it, split it, improve it, do it your own way!
 - You can use version of node you prefer
 - Code was tested in node 6, 10, 12, 14, 16, so it should be quite version agnostic at this stage
