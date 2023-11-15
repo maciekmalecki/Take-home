@@ -1,3 +1,41 @@
+Event Parser Assessment
+Welcome to the Event Parser assessment! This repository contains a TypeScript-based solution that parses sporting event data into a more readable format.
+
+Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+Follow these steps to set up the project locally:
+clone the repository
+npm i (install dependecies)
+npx tsc (compile ts to js)
+
+To run the application, execute:
+node dist/app.js 
+
+Running Tests
+To run the unit tests and ensure the Event Parser is functioning as expected, execute:
+npm test
+
+For test coverage, execute:
+jest --coverage
+
+Project Structure
+src/: Contains the TypeScript source files.
+parsers/: Contains the EventParser class.
+data/: Contains the matches data file.
+types/: Contains type definitions.
+interfaces/: Contains TypeScript interfaces used in the project.
+tests/: Contains the Jest test files for the project.
+dist/: Contains the compiled JavaScript files (generated after building).
+
+Built With
+TypeScript - The primary language used.
+Jest - The testing framework.
+
+Authors
+Maciej Malecki
+
+Instructions:
 - You have to refactor code in app.js file. Change it, split it, improve it, do it your own way!
 - You can use version of node you prefer
 - Code was tested in node 6, 10, 12, 14, 16, so it should be quite version agnostic at this stage
@@ -31,3 +69,5 @@
 - We strongly recommend to write some unit tests!
 
 Good luck!
+
+

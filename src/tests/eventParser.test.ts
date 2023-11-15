@@ -1,6 +1,14 @@
 import EventParser from '../app';
 import { INVALID_SCORE, INVALID_SPORT } from '../types';
 
+// Designed 4 test to check for:
+// Typical use cases (happy paths):
+// 1. Checks if the makeEventName method returns the correct format for a tennis match
+// 2. Checks if formatScore correctly parses and flattens the nested array for a basketball match score.
+// Error cases (handling of invalid inputs):
+// 3. Checks the behavior of makeEventName when an unsupported sport is provided, expecting a predefined INVALID_SPORT message
+// 4. Checks the behavior of formatScore when the score property is undefined, expecting a predefined INVALID_SCORE message
+
 describe('EventParser', () => {
   let parser: EventParser;
 

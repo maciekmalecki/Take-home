@@ -29,12 +29,12 @@ class EventParser {
     if (!score) {
       return INVALID_SCORE;
     }
-    // basketball
+    // Basketball
     if (Array.isArray(score)) {
       const result = score.flat();
       return result.join(',');
     }
-    // volleyball and tennis
+    // Volleyball and tennis
     if (score.includes(',')) {
       const scoreArr = score.split(',');
       const mainScore = scoreArr[0];
@@ -47,13 +47,14 @@ class EventParser {
       const setResult = setResultArr.join(', ');
       return `${matchResult} (${setResult})`;
     }
-    // soccer and handball
+    // Soccer and handball
     return score;
   }
 }
 const matchesParsed: ParsedData[] = [];
 const parser = new EventParser();
 
+// Decide to use forEach instead of map and filter because of slight performance gain
 matches.forEach((match) => {
   const name = parser.makeEventName(match);
   const score = parser.formatScore(match);
